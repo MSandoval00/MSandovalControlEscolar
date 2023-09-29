@@ -172,6 +172,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\AlumnoMateriaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MateriaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -252,6 +253,7 @@
     <Content Include="Views\Materia\Form.cshtml" />
     <Content Include="Views\Materia\Delete.cshtml" />
     <Content Include="Views\Materia\Modal.cshtml" />
+    <Content Include="Views\AlumnoMateria\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

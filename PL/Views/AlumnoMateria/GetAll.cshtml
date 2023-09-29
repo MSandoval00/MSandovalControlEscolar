@@ -1,0 +1,46 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Alumnos</h2>
+</div>
+<hr />
+@if (Model.Alumnos != null)
+{
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <td class="col-md-3">Nombre</td>
+                        <td class="col-md-3">Apellido Paterno</td>
+                        <td class="col-md-3">Apellido Materno</td>
+                        <td class="col-md-3">Asignar</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Alumno alumno in Model.Alumnos)
+                    {
+                        <tr>
+                            <td class="col-md-3">@alumno.Nombre</td>
+                            <td class="col-md-3">@alumno.ApellidoPaterno</td>
+                            <td class="col-md-3">@alumno.ApellidoMaterno</td>
+                            <td class="col-md-3"><a class="btn btn-success" href="@Url.Action("GetMateriasAsignadas", "AlumnoMateria", new {IdAlumno=alumno.IdAlumno})"><i class="glyphicon glyphicon-plus"></i> Agregar</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+}
+else
+{
+    <h1>No hay registros por mostrar</h1>
+}
+
+
