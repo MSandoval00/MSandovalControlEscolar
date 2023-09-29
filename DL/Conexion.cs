@@ -9,9 +9,10 @@ namespace DL
 {
     public class Conexion
     {
+
         public static string Get()
         {
-            return ConfigurationManager.ConnectionStrings["MSandovalContorlEscolar"].ConnectionString.ToString();
+            return ConfigurationManager.ConnectionStrings["MSandovalControlEscolar"].ConnectionString.ToString();
         }
     }
 }

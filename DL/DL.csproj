@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{70363C45-11C2-477F-BE4A-4413DB8CF922}</ProjectGuid>
+    <ProjectGuid>{AA731AB2-C767-4D43-9965-61FF30F86295}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DL</RootNamespace>
@@ -31,9 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,9 +51,70 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alumno.cs">
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnoGetAll_Result.cs">
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlumnoGetById_Result.cs">
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="Materia.cs">
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaGetAll_Result.cs">
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaGetById_Result.cs">
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MSandovalControlEscolar.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSandovalControlEscolar.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MSandovalControlEscolar.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MSandovalControlEscolar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MSandovalControlEscolar.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="MSandovalControlEscolar.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MSandovalControlEscolar.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="MSandovalControlEscolar.edmx.diagram">
+      <DependentUpon>MSandovalControlEscolar.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MSandovalControlEscolar.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MSandovalControlEscolar.Context.cs</LastGenOutput>
+      <DependentUpon>MSandovalControlEscolar.edmx</DependentUpon>
+    </Content>
+    <Content Include="MSandovalControlEscolar.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MSandovalControlEscolar.edmx</DependentUpon>
+      <LastGenOutput>MSandovalControlEscolar.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

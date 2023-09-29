@@ -1,0 +1,34 @@
+﻿@model ML.Materia
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h2>Materias para registrar</h2>
+</div>
+<hr />
+<div class="container">
+    @using (Html.BeginForm("Form", "Materia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.IdMateria)
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model=> Model.Nombre)
+                @Html.TextBoxFor(model=> Model.Nombre)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model=> Model.Costo)
+                @Html.TextBoxFor(model=>Model.Costo)
+            </div>
+            <hr />
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <input type="submit" name="name" class="btn btn-success" value="Guardar" />
+                <a href="@Url.Action("GetAll","Materia")" class="btn btn-danger">Regresar</a>
+            </div>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,50 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h2>Alumnos Registrados</h2>
+    <a class="btn btn-success" href="@Url.Action("Form","Alumno")">Agregar alumno</a>
+</div>
+<hr />
+@if (Model.Alumnos != null)
+{
+    <div class="container">
+        <div class="row">
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Acciones</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Alumno alumno in Model.Alumnos)
+                    {
+                        <tr>
+                            <td class="col-md-3">@alumno.Nombre</td>
+                            <td class="col-md-3">@alumno.ApellidoPaterno</td>
+                            <td class="col-md-3">@alumno.ApellidoMaterno</td>
+                            <td class="col-md-3">
+                                <a class="btn btn-danger " href="@Url.Action("Delete","Alumno",new {IdAlumno=alumno.IdAlumno})" , onclick="return confirm('¿Estas seguro de eliminar este alumno?')">Eliminar</a>
+                                <a class="btn btn-warning" href="@Url.Action("Form","Alumno",new {IdAlumno=alumno.IdAlumno})">Actualizar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+            }
+            else 
+            {
+                <h1>No hay registros</h1>
+            }
+                   

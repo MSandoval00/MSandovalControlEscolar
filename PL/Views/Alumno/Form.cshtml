@@ -1,0 +1,40 @@
+﻿@model ML.Alumno
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h2>Form</h2>
+</div>
+<hr />
+<div class="container">
+    @using (Html.BeginForm("Form", "Alumno", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @*@Html.LabelFor(model => Model.IdAlumno)
+            @Html.TextBoxFor(model => Model.IdAlumno, new { @class = "form-control visually-hidden" })*@
+        @Html.HiddenFor(model => model.IdAlumno)
+        <div class="row">
+            <div class="col-md-3">
+                @Html.LabelFor(model => Model.Nombre)
+                @Html.TextBoxFor(model => Model.Nombre, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => Model.ApellidoPaterno)
+                @Html.TextBoxFor(model => Model.ApellidoPaterno, new { @class = "form-control" })
+            </div><div class="col-md-3">
+                @Html.LabelFor(model => Model.ApellidoMaterno)
+                @Html.TextBoxFor(model => Model.ApellidoMaterno, new { @class = "form-control" })
+            </div>
+
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                <input class="btn btn-success" type="submit" name="name" value="Guardar" />
+                <a class="btn btn-danger" href="@Url.Action("GetAll","Alumno")">Cancelar</a>
+            </div>
+        </div>
+    }
+</div>
+

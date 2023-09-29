@@ -10,50 +10,153 @@ namespace BL
 {
     public class Materia
     {
-        public static ML.Result GetAll()
+        public static ML.Result Add(ML.Materia materia)
         {
             ML.Result result = new ML.Result();
             try
             {
-                using (SqlConnection context = new SqlConnection(DL.Conexion.Get()))
+                using (DL.MSandovalControlEscolarEntities context=new DL.MSandovalControlEscolarEntities())
                 {
-                    string query ="SELECT idMateria,Nombre,Costo FROM Materias";
-                   SqlCommand cmd = new SqlCommand(query,context);
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable tablamateria = new DataTable();
-                    adapter.Fill(tablamateria);
-                    if (tablamateria.Rows.Count>0)
+                    var query = context.MateriaAdd(materia.Nombre,materia.Costo);
+                    if (query>=1)
                     {
-                        result.Objects=new List<object>();
-                        foreach (DataRow row in tablamateria.Rows)
-                        {
-                            ML.Materia materia = new ML.Materia();
-                            materia.IdMateria= int.Parse(row[0].ToString());
-                            materia.Nombre= row[1].ToString();
-                            materia.Costo =decimal.Parse(row[2].ToString());
-
-                            result.Objects.Add(materia);
-                        }
                         result.Correct = true;
                     }
                     else
                     {
-                        result.Correct = false;
-                        result.ErrorMessage = "No hay registros en la tabla";
+                        result.Correct=false;
+                        result.ErrorMessage = "No se pudo insertar materia";
                     }
 
-
-            }
-
+                }
             }
             catch (Exception ex)
             {
                 result.Correct = false;
                 result.ErrorMessage = ex.Message;
                 result.Ex=ex;
-              
             }
             return result;
+        }
+        public static ML.Result Update(ML.Materia materia)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                using (DL.MSandovalControlEscolarEntities context = new DL.MSandovalControlEscolarEntities())
+                {
+                    var query = context.MateriaUpdate(materia.IdMateria,materia.Nombre,materia.Costo);
+                    if (query > 0)
+                    {
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct = false;
+                        result.ErrorMessage = "No se pudo actualizar materia";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+            }
+            return result;
+        }
+        public static ML.Result Delete(int IdMateria)
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                using (DL.MSandovalControlEscolarEntities context=new DL.MSandovalControlEscolarEntities())
+                {
+                    var query = context.MateriaDelete(IdMateria);
+                    if (query>0)
+                    {
+                        result.Correct = true;
+                    }
+                    else
+                    {
+                        result.Correct= false;
+                        result.ErrorMessage = "No se pudo eliminar la materia";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                result.Correct = false;
+                result.ErrorMessage= ex.Message;
+                result.Ex= ex;
+            }
+            return result;
+        }
+        public static ML.Result GetAll()
+        {
+            ML.Result result = new ML.Result();
+            try
+            {
+                using(DL.MSandovalControlEscolarEntities context=new DL.MSandovalControlEscolarEntities())
+                {
+                    var query=context.MateriaGetAll().ToList();
+                    result.Objects = new List<object>();
+                    foreach (var row in query)
+                    {
+                        ML.Materia materia =new ML.Materia();
+                        materia.IdMateria = row.IdMateria;
+                        materia.Nombre = row.Nombre;
+                        materia.Costo = decimal.Parse(row.Costo.ToString());
+
+                        result.Objects.Add(materia);
+
+                    }
+                    result.Correct = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage = ex.Message;
+                result.Ex = ex;
+
+            }
+            return result;
+        }
+        public static ML.Result GetById(int IdMateria)
+        {
+            ML.Result result=new ML.Result();
+            try
+            {
+                using (DL.MSandovalControlEscolarEntities context=new DL.MSandovalControlEscolarEntities())
+                {
+                    var query = context.MateriaGetById(IdMateria).FirstOrDefault();
+                    result.Object=new List<object>();
+                    if (query!=null)
+                    {
+                        ML.Materia materia=new ML.Materia();
+                        materia.IdMateria=query.IdMateria;
+                        materia.Nombre=query.Nombre;
+                        materia.Costo=decimal.Parse(query.Costo.ToString());
+
+                        result.Object = materia;
+                        result.Correct = true;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                result.Correct = false;
+                result.ErrorMessage=ex.Message;
+                result.Ex=ex;
+               
+            }
+            return result ;
         }
     }
 }

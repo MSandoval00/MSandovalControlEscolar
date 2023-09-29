@@ -1,0 +1,51 @@
+﻿@model ML.Materia
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h2>Materias registradas</h2>
+    <a href="@Url.Action("Form","Materia")" class="btn btn-success"> Agregar Materia</a>
+</div>
+<hr />
+@if (Model.Materias != null)
+{
+
+
+    <div class="container">
+        <div class="row">
+            <table class="table table-responsive table-bordered">
+                <thead>
+                    <tr>
+                        <td>Id Materia</td>
+                        <td>Nombre</td>
+                        <td>Costo</td>
+                        <td>Acciones</td>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.Materia materia in Model.Materias)
+                    {
+                        <tr>
+                            <td class="col-md-3">@materia.IdMateria</td>
+                            <td class="col-md-3">@materia.Nombre</td>
+                            <td class="col-md-3">@materia.Costo</td>
+                            <td class="col-md-3">
+                                <a class="btn btn-danger " href="@Url.Action("Delete","Materia",new {IdMateria=materia.IdMateria})" , onclick="return confirm('¿Estas seguro de eliminar esta materia?')">Eliminar</a>
+                                <a class="btn btn-warning " href="@Url.Action("Form","Materia",new {IdMateria=materia.IdMateria})">Actualizar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+}
+else
+{
+    <h1>No hay registros de materias</h1>
+}
