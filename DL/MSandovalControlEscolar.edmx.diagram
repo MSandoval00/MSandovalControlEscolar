@@ -7,6 +7,7 @@
       <Diagram DiagramId="b3efbc121180477aa5ee76407e3c615e" Name="Diagram1">
         <EntityTypeShape EntityType="MSandovalControlEscolarModel.Alumno" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MSandovalControlEscolarModel.Materia" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MSandovalControlEscolarModel.AlumnoMateria" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

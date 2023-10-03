@@ -25,5 +25,33 @@ namespace PL.Controllers
 
             return View(alumno);
         }
+        public ActionResult GetMateriasAsignadas(int IdAlumno)
+        {
+           
+            ML.Result result = BL.AlumnoMateria.GetMateriasAsignadas(IdAlumno);
+            ML.AlumnoMateria alumnoMateria=new ML.AlumnoMateria();
+            if (result.Correct)
+            {
+                alumnoMateria.AlumnosMaterias = result.Objects;   
+            }
+            //ML.AlumnoMateria alumnoMateria=new ML.AlumnoMateria();
+            //alumnoMateria = (ML.AlumnoMateria)result.Object;
+            //alumnoMateria.Alumno.IdAlumno=IdAlumno;
+            return View(alumnoMateria);
+        }
+        public ActionResult Delete(int IdMateria)
+        {
+            ML.Result result=BL.AlumnoMateria.DeleteMateria(IdMateria);
+            if (result.Correct)
+            {
+                ViewBag.Mensaje = "Materia eliminada correctamente";
+            }
+            else
+            {
+
+                ViewBag.Mensaje = "Materia no eliminada correctamente";
+            }
+            return PartialView("Modal");
+        }
     }
 }

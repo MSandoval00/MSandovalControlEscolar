@@ -62,6 +62,9 @@
     </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="GetMateriasAsignadas_Result.cs">
+      <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
+    </Compile>
     <Compile Include="Materia.cs">
       <DependentUpon>MSandovalControlEscolar.tt</DependentUpon>
     </Compile>

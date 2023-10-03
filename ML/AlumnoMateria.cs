@@ -8,7 +8,8 @@ namespace ML
 {
     public class AlumnoMateria
     {
-        public int IdAlumno { get; set; }
-        public int IdMateria { get; set; }
+        public ML.Alumno Alumno { get; set; }
+        public ML.Materia Materia { get; set; }
+        public List<object> AlumnosMaterias { get; set; }
     }
 }

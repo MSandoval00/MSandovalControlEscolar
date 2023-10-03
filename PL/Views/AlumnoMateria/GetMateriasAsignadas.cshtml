@@ -1,0 +1,51 @@
+﻿@model ML.AlumnoMateria
+@{
+    ViewBag.Title = "GetMateriasAsignadas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="text-center">
+    <h2>Materias Asignadas</h2>
+    @*@foreach (ML.AlumnoMateria alumno in Model.AlumnosMaterias)
+    {
+        @Html.LabelFor(model => Model.Alumno.IdAlumno)
+        @Html.TextBoxFor(model => Model.Alumno.IdAlumno)
+    }*@
+    @*Para ver si imprime los datos del alumno*@
+    <a class="btn btn-success" href="@Url.Action("GetMateriaNoAsignadas","AlumnoMateria")">Agregar Materia</a>
+</div>
+@if (Model.AlumnosMaterias != null)
+{
+    <div class="container">
+        <div class="row">
+            <table class="table table-bordered table-responsive">
+                <thead>
+                    <tr>
+                        <td>Materia</td>
+                        <td>Costo</td>
+                        <td>Eliminar Materia</td>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ML.AlumnoMateria alumnoMateria in Model.AlumnosMaterias)
+                    {
+                        <tr>
+                            <td>@alumnoMateria.Materia.Nombre</td>
+                            <td>@alumnoMateria.Materia.Costo</td>
+                            <td class="col-md-3"><a href="@Url.Action("Delete", "AlumnoMateria", new { IdMateria=alumnoMateria.Materia.IdMateria})" class="btn btn-danger">X</a></td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+}
+else
+{
+    <h1>No hay materias asignadas</h1>
+}
+
+
